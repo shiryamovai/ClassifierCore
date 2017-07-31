@@ -1,0 +1,33 @@
+﻿<TreeView x:Class="ClassifierView.View.SectionTreeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClassifierView.View"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+          SelectedValuePath="{Binding Test}">
+
+    <TreeView.Resources>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="IsSelected"
+                            Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+    </TreeView.Resources>
+    <TreeView.ItemContainerStyle>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+    </TreeView.ItemContainerStyle>
+    <TreeView.ItemTemplate>
+        <HierarchicalDataTemplate ItemsSource="{Binding ItemDescriptionVms}">
+            <TextBlock Text="{Binding Name}"/>
+            <HierarchicalDataTemplate.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ViewName}"/>
+                </DataTemplate>
+            </HierarchicalDataTemplate.ItemTemplate>
+        </HierarchicalDataTemplate>
+    </TreeView.ItemTemplate>
+</TreeView>
